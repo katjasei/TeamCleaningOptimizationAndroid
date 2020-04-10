@@ -1,0 +1,5 @@
+language: kotlin  #1
+windows_image: android_studio3.6.2 #2
+android_project: teamcleaningoptimizationteam #3
+
+
