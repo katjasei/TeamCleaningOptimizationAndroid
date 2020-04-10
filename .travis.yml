@@ -16,9 +16,9 @@ before_install:
   # Install the rest of tools (e.g., avdmanager)
   - yes | sdkmanager tools
   # Install the system image
-  - yes | sdkmanager "system-images;android-18;default;armeabi-v7a"
+  - yes | sdkmanager "system-images;android-28;default;armeabi-v7a"
   # Create and start emulator for the script. Meant to race the install task.
-  - echo no | avdmanager create avd --force -n test -k "system-images;android-18;default;armeabi-v7a"
+  - echo no | avdmanager create avd --force -n test -k "system-images;android-28;default;armeabi-v7a"
   - $ANDROID_HOME/emulator/emulator -avd test -no-audio -no-window &
 
 install: ./gradlew clean assemble assembleAndroidTest --stacktrace
@@ -26,7 +26,9 @@ install: ./gradlew clean assemble assembleAndroidTest --stacktrace
 before_script:
   - android-wait-for-emulator
   - adb shell input keyevent 82
+
 script:
+  - chmod +x ./gradlew
   - ./gradlew build connectedCheck
 
 
